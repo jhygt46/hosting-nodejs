@@ -17,7 +17,6 @@ var AWS = require('aws-sdk');
 AWS.config.loadFromPath('./config.json');
 var ses = new AWS.SES({ "Version": "2012-10-17", "Statement": [{ "Effect": "Allow", "Action": ["ses:SendEmail", "ses:SendRawEmail"], "Resource": "arn:aws:iam::406019176861:user/ses-smtp-user.20190116-210346" }]});
 
-
 app.listen(helpers.getPort(), () => {
     console.log("El servidor está inicializado en el puerto "+helpers.getPort());
 });
@@ -25,28 +24,6 @@ app.listen(helpers.getPort(), () => {
 app.get('/', urlencodedParser, function(req, res){
 	res.setHeader('Content-Type', 'application/json');
     res.end("OK");
-});
-
-const request = require('request');
-const http = require("http");
-
-var download = function(url, dest, cb) {
-	var file = fs.createWriteStream(dest);
-	http.get(url, function(response) {
-		response.pipe(file);
-		file.on('finish', function() {
-			file.close(cb);  // close() is async, call cb after close completes.
-		});
-	});
-}
-
-app.get('/get_videos', function(req, res){
-	request('http://jardinvalleencantado.cl/online/videos/', function (error, response, body){
-		var x = JSON.parse(body);
-		x.forEach(element => {
-			download('http://jardinvalleencantado.cl/online/videos/'+element, '/var/nodejs/videos/'+element, function(){ console.log(element+" => copiado"); });
-		});
-	});
 });
 
 app.get('/video', function(req, res){
@@ -196,3 +173,27 @@ app.post('/mail_reserva_medici', urlencodedParser, function(req, res){
 	});
 
 });
+
+
+/*
+const request = require('request');
+const http = require("http");
+
+var download = function(url, dest, cb) {
+	var file = fs.createWriteStream(dest);
+	http.get(url, function(response) {
+		response.pipe(file);
+		file.on('finish', function() {
+			file.close(cb);  // close() is async, call cb after close completes.
+		});
+	});
+}
+app.get('/get_videos', function(req, res){
+	request('http://jardinvalleencantado.cl/online/videos/', function (error, response, body){
+		var x = JSON.parse(body);
+		x.forEach(element => {
+			download('http://jardinvalleencantado.cl/online/videos/'+element, '/var/nodejs/videos/'+element, function(){ console.log(element+" => copiado"); });
+		});
+	});
+});
+*/
