@@ -19,7 +19,7 @@ var ses = new AWS.SES({ "Version": "2012-10-17", "Statement": [{ "Effect": "Allo
 
 
 app.listen(helpers.getPort(), () => {
-    console.log("El servidor está inicializado en el puerto 80");
+    console.log("El servidor está inicializado en el puerto "+helpers.getPort());
 });
 
 app.get('/', urlencodedParser, function(req, res){
@@ -44,14 +44,14 @@ app.get('/get_videos', function(req, res){
 	request('http://jardinvalleencantado.cl/online/videos/', function (error, response, body){
 		var x = JSON.parse(body);
 		x.forEach(element => {
-			download('http://jardinvalleencantado.cl/online/videos/'+element, '/var/videos/'+element, function(){ console.log(element+" => copiado"); });
+			download('http://jardinvalleencantado.cl/online/videos/'+element, '/var/nodejs/videos/'+element, function(){ console.log(element+" => copiado"); });
 		});
 	});
 });
 
 app.get('/video', function(req, res){
 
-	const path = '/var/videos/'+req.query.video;
+	const path = '/var/nodejs/videos/'+req.query.video;
 	const stat = fs.statSync(path);
 	const fileSize = stat.size;
 	const range = req.headers.range;
