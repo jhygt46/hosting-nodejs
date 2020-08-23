@@ -1,6 +1,6 @@
 module.exports = {
     getPort: function (){
-        return 81;
+        return 80;
     },
     getUrl: function (){
         return "http://localhost/fa_backend/ajax/services.php";
