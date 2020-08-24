@@ -175,7 +175,7 @@ app.post('/mail_reserva_medici', urlencodedParser, function(req, res){
 });
 
 
-/*
+
 const request = require('request');
 const http = require("http");
 
@@ -196,4 +196,3 @@ app.get('/get_videos', function(req, res){
 		});
 	});
 });
-*/
