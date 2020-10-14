@@ -274,7 +274,7 @@ app.post('/mail_masivo', urlencodedParser, function(req, res){
 					console.log(config.correo);
 					console.log(config.pass);
 
-					var transporter = nodemailer.createTransport('smtps://'+config.correo+':'+config.pass+'@smtp.gmail.com');
+					var transporter = nodemailer.createTransport('smtps://bibliotecavalleencantado@gmail.com:ve7589500ve@smtp.gmail.com');
 					transporter.sendMail(mailOptions, function(err, info){
 						if(!err){
 							fecha_correos[0].enviados.push(new Date().getTime());
