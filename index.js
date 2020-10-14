@@ -277,7 +277,7 @@ app.post('/mail_masivo', urlencodedParser, function(req, res){
 					const transporter = nodemailer.createTransport({
 						service: 'gmail',
 						auth: {
-						  user: 'bibliotecavalleencantado@gmail.com',
+						  user: 'bibliotecavalleencantado',
 						  pass: 've7589500ve' // naturally, replace both with your real credentials or an application-specific password
 						}
 					});
