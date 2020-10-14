@@ -283,7 +283,6 @@ app.post('/mail_masivo', urlencodedParser, function(req, res){
 					});
 					
 					console.log(mailOptions);
-					console.log(transporter);
 					
 					transporter.sendMail(mailOptions, function(err, info){
 						if(!err){
