@@ -263,7 +263,6 @@ app.post('/mail_masivo', urlencodedParser, function(req, res){
 					aux_theme = fs.readFileSync("mail_template/"+req.body.theme, { encoding: 'utf8' });
 					if(typeof req.body.id !== 'undefined'){ aux_theme = aux_theme.replace(/#ID#/g, req.body.id) }
 					if(typeof req.body.nombre !== 'undefined'){ aux_theme = aux_theme.replace(/#NOMBRE#/g, req.body.nombre) }
-					
 					var mailOptions = {
 						from: 'bibliotecavalleencantado@gmail.com',
 						to: req.body.correo,
@@ -271,18 +270,17 @@ app.post('/mail_masivo', urlencodedParser, function(req, res){
 						html: aux_theme,
 						replyTo: 'valle-encantado@hotmail.com'
 					};
-
 					//var transporter = nodemailer.createTransport('smtps://bibliotecavalleencantado@gmail.com:ve7589500ve@smtp.gmail.com');
-
-					const transporter = nodemailer.createTransport({
-						service: 'gmail',
+					
+					var transporter = nodemailer.createTransport({
+						host: 'smtp.gmail.com',
+						port: 465,
+						secure: true, 
 						auth: {
-						  user: 'bibliotecavalleencantado',
-						  pass: 've7589500ve' // naturally, replace both with your real credentials or an application-specific password
+							user: 'bibliotecavalleencantado@gmail.com', 
+							pass: 've7589500ve' 
 						}
 					});
-					
-					console.log(mailOptions);
 					
 					transporter.sendMail(mailOptions, function(err, info){
 						if(!err){
