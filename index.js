@@ -270,10 +270,6 @@ app.post('/mail_masivo', urlencodedParser, function(req, res){
 						html: aux_theme,
 						replyTo: 'valle-encantado@hotmail.com'
 					};
-
-					console.log(config.correo);
-					console.log(config.pass);
-
 					var transporter = nodemailer.createTransport('smtps://bibliotecavalleencantado@gmail.com:ve7589500ve@smtp.gmail.com');
 					transporter.sendMail(mailOptions, function(err, info){
 						if(!err){
