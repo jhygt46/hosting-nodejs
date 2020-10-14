@@ -256,18 +256,14 @@ app.post('/mail_jardin', urlencodedParser, function(req, res){
 
 var fecha_correos = config.correos;
 app.post('/mail_masivo', urlencodedParser, function(req, res){
-
 	res.setHeader('Content-Type', 'application/json');
 	if(req.body.code == "k8Dqa2C9lKgxT6kpNs1z6RgKb0r3WaCvN6RjK7rU"){
 		if(helpers.enviados(fecha_correos[0].enviados)){
-
 			fs.access('./mail_template/'+req.body.theme, fs.F_OK, (err) => {
 				if(!err){
-
 					aux_theme = fs.readFileSync("mail_template/"+req.body.theme, { encoding: 'utf8' });
 					if(typeof req.body.id !== 'undefined'){ aux_theme = aux_theme.replace(/#ID#/g, req.body.id) }
 					if(typeof req.body.nombre !== 'undefined'){ aux_theme = aux_theme.replace(/#NOMBRE#/g, req.body.nombre) }
-
 					var mailOptions = {
 						from: 'bibliotecavalleencantado@gmail.com',
 						to: req.body.correo,
@@ -294,7 +290,6 @@ app.post('/mail_masivo', urlencodedParser, function(req, res){
 	}else{
 		res.end(JSON.stringify({ err: "", op: 2 }));
 	}
-
 });
 
 
