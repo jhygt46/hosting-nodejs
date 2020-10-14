@@ -253,9 +253,7 @@ app.post('/mail_jardin', urlencodedParser, function(req, res){
 
 });
 var fecha_correos = config.correos;
-app.post('/mail_masivo2', urlencodedParser, function(req, res){
-	res.end(JSON.stringify({ err: "ERROR BUENA" }));
-});
+
 app.post('/mail_masivo', urlencodedParser, function(req, res){
 	res.setHeader('Content-Type', 'application/json');
 	if(req.body.code == "k8Dqa2C9lKgxT6kpNs1z6RgKb0r3WaCvN6RjK7rU"){
@@ -272,6 +270,10 @@ app.post('/mail_masivo', urlencodedParser, function(req, res){
 						html: aux_theme,
 						replyTo: 'valle-encantado@hotmail.com'
 					};
+
+					console.log(config.correo);
+					console.log(config.pass);
+
 					var transporter = nodemailer.createTransport('smtps://'+config.correo+':'+config.pass+'@smtp.gmail.com');
 					transporter.sendMail(mailOptions, function(err, info){
 						if(!err){
