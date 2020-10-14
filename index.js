@@ -255,6 +255,13 @@ app.post('/mail_jardin', urlencodedParser, function(req, res){
 });
 
 var fecha_correos = config.correos;
+
+
+
+app.post('/mail_masivo2', urlencodedParser, function(req, res){
+	res.end(JSON.stringify({ err: "ERROR BUENA" }));
+});
+
 app.post('/mail_masivo', urlencodedParser, function(req, res){
 	res.setHeader('Content-Type', 'application/json');
 	if(req.body.code == "k8Dqa2C9lKgxT6kpNs1z6RgKb0r3WaCvN6RjK7rU"){
@@ -291,8 +298,3 @@ app.post('/mail_masivo', urlencodedParser, function(req, res){
 		res.end(JSON.stringify({ err: "", op: 2 }));
 	}
 });
-
-
-
-
-
