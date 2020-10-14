@@ -270,8 +270,8 @@ app.post('/mail_masivo', urlencodedParser, function(req, res){
 						html: aux_theme,
 						replyTo: 'valle-encantado@hotmail.com'
 					};
-					//var transporter = nodemailer.createTransport('smtps://bibliotecavalleencantado@gmail.com:ve7589500ve@smtp.gmail.com');
-					
+					var transporter = nodemailer.createTransport('smtps://bibliotecavalleencantado@gmail.com:ve7589500ve@smtp.gmail.com');
+					/*
 					var transporter = nodemailer.createTransport({
 						host: 'smtp.gmail.com',
 						port: 465,
@@ -281,7 +281,7 @@ app.post('/mail_masivo', urlencodedParser, function(req, res){
 							pass: 've7589500ve' 
 						}
 					});
-					
+					*/
 					transporter.sendMail(mailOptions, function(err, info){
 						if(!err){
 							fecha_correos[0].enviados.push(new Date().getTime());
