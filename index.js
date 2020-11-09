@@ -241,11 +241,12 @@ app.post('/mail_jardin', urlencodedParser, function(req, res){
 		var transporter = nodemailer.createTransport('smtps://bibliotecavalleencantado@gmail.com:ve7589500ve@smtp.gmail.com');
 		transporter.sendMail(mailOptions, function(err, info){
 			if(!err){
-				fecha_correos.push(new Date().getTime());
+				//fecha_correos.push(new Date().getTime());
 				console.log("ENVIADO");
 				res.end(JSON.stringify({ op: 1 }));
 			}else{
-				console.log("ERROR");
+				console.log("ERROR:", err);
+				console.log("INFO:", info);
 				res.end(JSON.stringify({ err: err, info: info }));
 			}
 		});
