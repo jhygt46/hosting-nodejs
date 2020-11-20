@@ -243,7 +243,7 @@ app.post('/mail_jardin', urlencodedParser, function(req, res){
 			if(!err){
 				res.end(JSON.stringify({ op: 1 }));
 			}else{
-				res.end(JSON.stringify({ op: 2 }));
+				res.end(JSON.stringify({ op: 2, err: err }));
 			}
 		});
 	}
